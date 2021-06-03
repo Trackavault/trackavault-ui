@@ -1,0 +1,10 @@
+.snackBarInfo {
+  background-color: #9e9e9e;
+  color: #9e9e9e;
+}
+.mat-simple-snackbar > span {
+  font-weight: bold;
+}
+.mat-simple-snackbar-action .mat-button .mat-button-wrapper {
+  color: #9e9e9e;
+}

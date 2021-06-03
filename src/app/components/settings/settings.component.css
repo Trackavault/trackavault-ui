@@ -1,0 +1,27 @@
+.container {
+  padding: 20px;
+}
+.general {
+  margin-bottom: 20px;
+}
+.wallet-container {
+  min-width: 300px;
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+.wallet {
+  padding: 20px;
+  font-size: 12px;
+  background: #424242;
+}
+.wallet:hover {
+  background: #565656;
+}
+
+.wallet-form {
+  width: 300px;
+}
+
+.mat-input-element {
+  font-size: 12px;
+}

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 200 200">
+  <defs>
+    <path d="M152.77 5.43v42.13l21.07 27.08V198H30.16V74.64l21.82-27.08V5.43h100.79z" id="a"/>
+    <path d="M153.65 27.99H54.73" id="b"/>
+    <path d="M101.46 49.15l-.87 2.97v86.15l.87.87 39.99-23.64-39.99-66.35z" id="c"/>
+    <path d="M101.46 49.15L61.47 115.5l39.99 23.64V49.15z" id="d"/>
+    <path d="M101.46 146.71l-.49.6V178l.49 1.43 40.01-56.34-40.01 23.62z" id="e"/>
+    <path d="M101.46 179.43v-32.72l-39.99-23.62 39.99 56.34z" id="f"/>
+    <path d="M101.46 139.14l39.99-23.64-39.99-18.17v41.81z" id="g"/>
+    <path d="M61.47 115.5l39.99 23.64V97.33L61.47 115.5z" id="h"/>
+  </defs>
+  <use xlink:href="#a" fill-opacity="0" stroke="#FFF" stroke-width="8"/>
+  <use xlink:href="#a" fill-opacity="0" stroke="#FFF" stroke-width="9"/>
+  <g>
+    <use xlink:href="#b" fill-opacity="0" stroke="#FFF" stroke-width="8"/>
+  </g>
+  <g>
+    <use xlink:href="#c" fill="#FFF"/>
+    <use xlink:href="#c" fill-opacity="0" stroke="#FFF" stroke-opacity="0"/>
+    <use xlink:href="#d" fill="#FFF"/>
+    <use xlink:href="#d" fill-opacity="0" stroke="#FFF" stroke-opacity="0"/>
+    <use xlink:href="#e" fill="#FFF"/>
+    <use xlink:href="#e" fill-opacity="0" stroke="#FFF" stroke-opacity="0"/>
+    <g>
+      <use xlink:href="#f" fill="#FFF"/>
+      <use xlink:href="#f" fill-opacity="0" stroke="#FFF" stroke-opacity="0"/>
+    </g>
+    <g>
+      <use xlink:href="#g" fill="#FFF"/>
+      <use xlink:href="#g" fill-opacity="0" stroke="#FFF" stroke-opacity="0"/>
+    </g>
+    <g>
+      <use xlink:href="#h" fill="#FFF"/>
+      <use xlink:href="#h" fill-opacity="0" stroke="#FFF" stroke-opacity="0"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,26 @@
+<div *ngIf="!loadingData; else loading">
+  <div fxLayout="row">
+    <span style="flex: 1 1 auto;"></span>
+    <div fxLayout="row" fxLayoutGap="5px" class="chart-buttons">
+      <button *ngIf="extraButtonArgs" mat-raised-button class="chart-button" (click)="extraButtonArgs.callback()">{{extraButtonArgs.title}}</button>
+      <button mat-raised-button class="chart-button" (click)="updateBounds('1D')">1D</button>
+      <button mat-raised-button class="chart-button" (click)="updateBounds('1W')">1W</button>
+      <button mat-raised-button class="chart-button" (click)="updateBounds('1M')">1M</button>
+      <button mat-raised-button class="chart-button" (click)="updateBounds('1Y')">1Y</button>
+      <button mat-raised-button class="chart-button" (click)="updateBounds()">All</button>
+    </div>
+  </div>
+  <div class="chart">
+    <canvas baseChart height="400"
+            [data]="chartData"
+            [options]="chartOptions"
+            [type]="chartType"
+            [plugins]="chartPlugins"></canvas>
+  </div>
+</div>
+
+<ng-template #loading>
+  <div fxLayout="row" fxLayoutAlign="center center" style="height: 400px">
+    <app-loading-spinner class="loading-general"></app-loading-spinner>
+  </div>
+</ng-template>

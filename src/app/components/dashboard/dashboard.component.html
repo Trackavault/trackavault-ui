@@ -1,0 +1,167 @@
+<div *ngIf="noWallets" class="intro" fxLayout="column" fxLayoutAlign="center center">
+  <span>Looks like you're new here!</span>
+  <span>Head to settings to start tracking wallets.</span>
+  <button mat-raised-button routerLink="/settings">
+    <div>
+      Track a wallet
+    </div>
+  </button>
+</div>
+
+<div [class.blur]="noWallets" class="grid-container">
+
+
+<!--  <div *ngIf="false; else loading">-->
+  <div *ngIf="!loadingData; else loading">
+    <div class="totals"
+         fxLayout="row wrap" fxLayoutAlign="space-between stretch" fxLayoutGap.gt-sm="20px grid"
+         fxLayout.lt-lg="column">
+      <div fxFlex="calc(50% - 20px)"
+           fxLayout="row wrap" fxLayoutAlign="space-between stretch" fxLayoutGap.gt-sm="20px"
+           fxLayout.xs="column">
+        <div class="dashboard-card" *ngFor="let card of cards1"
+             fxFlex="calc(33% - 20px)">
+          <mat-card
+            fxLayout="column" fxLayoutAlign="center center" fxLayout.lt-lgng="column">
+            <div fxLayout="column" fxLayoutAlign="center start">
+              <div *ngIf="card.value$ | async; let value; else loadingSmall" class="overview-value">
+                {{value.amount.toString() | currency:value.currency : 'symbol' : (value.amount.gt(100000) ? '1.0-0': '1.2-2')}}
+              </div>
+              <div class="overview-title">{{card.title}}</div>
+            </div>
+          </mat-card>
+        </div>
+      </div>
+      <div fxFlex="calc(50% - 20px)"
+           fxLayout="row wrap" fxLayoutAlign="space-between stretch" fxLayoutGap.gt-sm="20px"
+           fxLayout.xs="column">
+      <div class="dashboard-card" *ngFor="let card of cards2"
+             fxFlex="calc(33% - 20px)">
+          <mat-card
+            fxLayout="column" fxLayoutAlign="center center" fxLayout.lt-lgng="column">
+            <div fxLayout="column" fxLayoutAlign="center start">
+              <div *ngIf="card.value$ | async; let value; else loadingSmall" class="overview-value">
+                {{value.amount.toString() | currency:value.currency : 'symbol' : (value.amount.gt(100000) ? '1.0-0': '1.2-2')}}
+              </div>
+              <div class="overview-title">{{card.title}}</div>
+            </div>
+          </mat-card>
+        </div>
+        <div class="dashboard-card"
+             fxFlex="calc(33% - 20px)">
+          <mat-card class="dashboard-card pie" fxLayout="column" fxLayoutAlign="space-between center">
+            <app-pie-chart [data]="allPositionsData$"></app-pie-chart>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+
+    <div class="mat-elevation-z8 history">
+      <app-balance-chart [data]="dailyBalanceChart$"></app-balance-chart>
+    </div>
+
+    <div class="mat-elevation-z8">
+      <table mat-table matSort #ongoing #ongoingSort="matSort" class="full-width-table" aria-label="Elements" matSortActive="valueInitial" matSortDirection="desc" multiTemplateDataRows>
+
+        <ng-container matColumnDef="logo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+          <td mat-cell *matCellDef="let row">
+            <div class="logo-container" fxLayoutAlign="start center" fxLayout.lt-md="column" fxLayoutAlign.lt-md="center start">
+              <img *ngIf="row.logo" class="token-logo logo-container-in" src="{{row.logo}}" alt="logo">
+              <div class="logo-container-in logo-name" [ngClass.gt-md]="'logo-name-large'">{{row.name}}</div>
+              <div *ngIf="row.extra && row.extra.migration" class="migration" [ngClass.gt-md]="'migration-large'">
+                <a href="https://yearn.finance/vaults/{{row.extra.migration.vaultFrom}}" target="_blank" rel="noreferrer"
+                  fxLayout="row">
+                  <mat-icon>warning</mat-icon>
+                  <p>Require migration</p>
+                </a>
+              </div>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="valueInitial">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Initial</th>
+          <td mat-cell *matCellDef="let row">
+            <app-asset-display [asset]="row.value.initial"></app-asset-display>
+        </ng-container>
+
+        <ng-container matColumnDef="value">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Current</th>
+          <td mat-cell *matCellDef="let row">
+            <app-asset-display [asset]="row.value.current"></app-asset-display>
+        </ng-container>
+
+        <ng-container matColumnDef="profitAll">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Profit</th>
+          <td mat-cell *matCellDef="let row">
+            <app-asset-display [asset]="row.profitAll" skipFirst="true"></app-asset-display>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="roi">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>ROI</th>
+          <td mat-cell *matCellDef="let row">
+            <div>{{row.roi | percent:'1.2'}}</div>
+            <div class="sub-apy">
+              <div>(1d: {{row.roiDaily | percent:'1.2'}})</div>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="profitDaily">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Daily</th>
+          <td mat-cell *matCellDef="let row">
+            <app-asset-display [asset]="row.profitDaily" skipFirst="true"></app-asset-display>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="APY">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>APY</th>
+          <td mat-cell *matCellDef="let row">
+            <div>{{row.apy.position | percent:'1.2'}}</div>
+            <div class="sub-apy">
+              <div>1d: {{row.apy["1"] | percent:'1.2'}}</div>
+              <div>7d: {{row.apy["7"] | percent:'1.2'}}</div>
+              <div>30d: {{row.apy["30"] | percent:'1.2'}}</div>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="expandedDetail">
+          <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+            <div *ngIf="expandedElement && expandedElement === element" class="element-detail"
+                 [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+              <app-line-chart [data]="element.lineChartData$" [legend]="true" style="width:100%"></app-line-chart>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let element; columns: displayedColumns;"
+            class="element-row"
+            [class.element-expanded-row]="expandedElement === element"
+            (click)="onClickElement(element)"></tr>
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+      </table>
+    </div>
+
+    <h2 class="title">Profits</h2>
+    <div class="mat-elevation-z8 history">
+      <app-profit-chart [data]="dailyProfitsChart$"></app-profit-chart>
+    </div>
+
+  </div>
+</div>
+
+
+<ng-template #loading>
+  <div fxLayout="row" fxLayoutAlign="center center" class="loading">
+    <app-loading-spinner class="loading-general"></app-loading-spinner>
+  </div>
+</ng-template>
+
+<ng-template #loadingSmall>
+  <mat-spinner diameter="20" mode="indeterminate"></mat-spinner>
+</ng-template>
+

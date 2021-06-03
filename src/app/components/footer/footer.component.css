@@ -1,0 +1,38 @@
+:host {
+  width: 100%;
+}
+
+.footer {
+  background: #424242;
+  color: #fff;
+  margin-left: 20px;
+  margin-right: 20px;
+  padding: 10px;
+}
+
+.link-feedback {
+  color: inherit;
+}
+
+.social svg{
+  width: 20px;
+  height: 20px;
+}
+
+.frill-container {
+  display: flex;
+  align-items: center;
+  border: 0;
+  padding: 0;
+  outline: 0;
+  background: none;
+  cursor: pointer;
+  position: relative;
+  font-weight: bold;
+}
+
+.frill-container svg {
+  width: 20px;
+  height: 20px;
+  margin-left: .25rem;
+}

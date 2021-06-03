@@ -1,0 +1,46 @@
+<div class="grid-container">
+
+<!--  <app-line-chart fxFlex="70"-->
+<!--                  [data]="lineChartData$"-->
+<!--                  [legend]="true">-->
+<!--  </app-line-chart>-->
+
+  <div *ngIf="!this.loadingData; else loading" fxLayout="row" class="chart-container">
+    <app-line-chart fxFlex="70"
+                    [data]="lineChartData$"
+                    [legend]="false"
+                    [TooltipOptions]="tooltipOptions">
+    </app-line-chart>
+
+    <div fxFlex="30" class="chart-tooltips">
+      <div class="mat-elevation-z8">
+        <table mat-table class="full-width-table" matSort aria-label="Elements" matSortActive="apy" matSortDirection="desc">
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+            <td mat-cell *matCellDef="let row">
+              <div fxLayout="row">
+                <div>{{row.name}}</div>
+              </div>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="apy">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>apy</th>
+            <td mat-cell *matCellDef="let row">
+              <div>{{row.apy | percent:'1.2'}}</div>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowClicked(row.index)"></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <div fxLayout="row" fxLayoutAlign="center center" class="loading">
+    <app-loading-spinner class="loading-general"></app-loading-spinner>
+  </div>
+</ng-template>

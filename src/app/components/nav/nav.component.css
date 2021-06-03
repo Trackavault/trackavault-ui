@@ -1,0 +1,95 @@
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 250px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.logo-container {
+  margin: 25px 0 20px 0;
+}
+
+.logo {
+  height: 80px;
+  width: 80px;
+  margin-bottom: 20px;
+}
+.logo svg {
+  fill: #ffffff;
+}
+.title {
+  font-family: 'poppins', sans-serif;
+  font-weight: 300;
+  font-size: 24px;
+}
+
+.tip-jar {
+  padding-left: 10px;
+  width: 20px;
+}
+
+.link-feedback {
+  color: inherit;
+}
+
+.social svg{
+  width: 25px;
+  height: 25px;
+}
+
+.frill-container {
+  display: flex;
+  align-items: center;
+  border: 0;
+  padding: 0;
+  outline: 0;
+  background: none;
+  cursor: pointer;
+  position: relative;
+  font-weight: bold;
+}
+
+.frill-container svg {
+  width: 25px;
+  height: 25px;
+  margin-left: .25rem;
+}
+
+.currency-selection {
+  padding: 0 50px;
+}
+
+.icons-container {
+  width: 100%;
+  padding: 10px;
+}
+
+mat-nav-list {
+  width: 100%;
+  padding-top: 20px;
+}
+
+mat-nav-list a {
+  margin: 10px 0;
+  font-size: 16px;
+  font-family: 'poppins', sans-serif;
+  font-weight: 400;
+}
+mat-nav-list mat-icon {
+  font-size: 1.5rem;
+  padding: 0 1.5rem 0 37px;
+}
+.mat-drawer-side {
+  border-right: unset !important;
+}

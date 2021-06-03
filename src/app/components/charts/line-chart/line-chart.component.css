@@ -1,0 +1,29 @@
+.chart {
+  clear: both;
+  position: relative;
+  display: block;
+}
+
+.reset-zoom {
+  position: absolute;
+  top: 10px;
+  right: 0px;
+}
+
+.chart-buttons {
+  background: #424242;
+  border-radius: 10px;
+  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+}
+.chart-button {
+  padding: 0 10px !important;
+  box-shadow: unset;
+  border-radius: 0;
+}
+.mat-raised-button {
+  background-color: transparent !important;
+  border-radius: 10px;
+}
+.mat-raised-button:hover {
+  background-color: #707070 !important;
+}

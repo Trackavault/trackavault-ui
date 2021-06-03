@@ -1,0 +1,96 @@
+:host {
+  min-height: 100%;
+  display: flex;
+}
+
+.block {
+  display: inline-block;
+  padding: 10px;
+}
+
+.token-logo {
+  width: 30px;
+  height: 30px;
+}
+.full-width-table {
+  width: 100%;
+}
+.grid-container {
+  max-width: 100%;
+  margin: 20px;
+}
+
+.dashboard-card {
+  height: 100%;
+}
+.dashboard-card-content {
+  text-align: center;
+}
+
+.totals {
+  padding-bottom: 20px;
+}
+.totals-item {
+  padding-bottom: 20px;
+}
+
+
+.sub-apy{
+  font-size: 11px;
+  color: #ababab;
+}
+
+.mat-cell:last-of-type {
+  padding-right: 0 !important;
+}
+.mat-cell:first-of-type {
+  padding-left: 10px !important;
+}
+
+.mat-column-logo {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 28% !important;
+  width: 28% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.logo-container {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.logo-container-in {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
+
+.logo-name {
+  /*padding-left: 20px;*/
+}
+
+.loading {
+  height: 100%;
+}
+
+.chart-container {
+  height: 400px;
+}
+
+.chart-tooltips {
+  overflow: auto;
+}
+::-webkit-scrollbar {
+  width: 5px;
+}

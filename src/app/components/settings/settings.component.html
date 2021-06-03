@@ -1,0 +1,44 @@
+<div class="container">
+  <div *ngIf="settings$ | async as settings">
+    <div class="general" fxLayout="column">
+      <h2>Settings</h2>
+      <mat-checkbox
+        [checked]="settings.groupInvestments"
+        (change)="setGroupInvestments($event.checked)">Group Investments by vaults</mat-checkbox>
+      <mat-checkbox
+        [checked]="settings.experimental"
+        (change)="setExperimental($event.checked)">Enable experimental features</mat-checkbox>
+      <mat-checkbox
+        [checked]="settings.ignoreDust"
+        (change)="setIgnoreDust($event.checked)">Ignore Dust</mat-checkbox>
+    </div>
+    <div class="wallet-container">
+      <h2>Wallets</h2>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <form (ngSubmit)="onSubmit()">
+          <mat-form-field class="wallet-form">
+            <mat-label>New Wallet Address To Track</mat-label>
+            <label>
+              <input matInput placeholder="Ex. 0x00000000000" [(ngModel)]="newWallet" [ngModelOptions]="{standalone: true}">
+            </label>
+          </mat-form-field>
+        </form>
+        <button mat-mini-fab color="primary" (click)="onSubmit()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </div>
+    <div fxLayout="column">
+      <div *ngFor="let wallet of settings.ethereumWallets; index as i" class="wallet wallet-container mat-elevation-z8">
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+          <div>{{wallet}}</div>
+          <button mat-mini-fab color="primary" (click)="deleteWallet(wallet)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>

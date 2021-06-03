@@ -1,0 +1,65 @@
+
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+$mat-primary-scheme: (
+  100: #c5cae9,
+  500: #3f51b5,
+  700: #303f9f,
+  contrast: (
+    100: rgba(0,0,0,0.87),
+    500: #ffffff,
+    700: #ffffff,
+  )
+);
+$mat-accent-scheme: (
+  100: #ffe57f,
+  500: #9e9e9e,
+  700: #ffc400,
+  contrast: (
+    100: rgba(0,0,0,0.87),
+    500: rgba(0,0,0,0.87),
+    700: #ffffff,
+  )
+);
+$mat-primary-palette: mat-palette($mat-primary-scheme);
+$mat-accent-palette: mat-palette($mat-accent-scheme);
+
+$app-light-theme: mat-light-theme($mat-primary-palette, $mat-accent-palette);
+
+@include angular-material-theme($app-light-theme);
+
+// following section is for dark mode.
+// use appropriate class name for darkMode
+$app-dark-theme: mat-dark-theme($mat-primary-palette, $mat-accent-palette);
+.darkMode {
+}
+@include angular-material-theme($app-dark-theme);
+
+@media only screen and (min-device-width: 736px) {
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #a4a4a4;
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #7c7c7c;
+  }
+}

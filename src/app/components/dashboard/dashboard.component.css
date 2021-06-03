@@ -1,0 +1,172 @@
+:host {
+  min-height: 100%;
+  display: flex;
+}
+
+.block {
+  display: inline-block;
+  padding: 10px;
+}
+
+.token-logo {
+  width: 30px;
+  height: 30px;
+}
+
+.full-width-table {
+  width: 100%;
+}
+
+table {
+  /*border-collapse: collapse;*/
+  table-layout: fixed;
+}
+
+.grid-container {
+  width: 100%;
+  margin: 20px;
+}
+
+.dashboard-card {
+  height: 150px;
+  padding-bottom: 20px;
+}
+
+.dashboard-card mat-card {
+  height: 100%;
+  border-radius: 22px;
+}
+
+.pie {
+  background: #303030;
+  box-shadow: unset !important;
+  padding: 0;
+}
+
+.dashboard-card-content {
+  text-align: center;
+}
+
+.totals {
+}
+
+.sub-apy{
+  font-size: 11px;
+  color: #ababab;
+}
+
+.mat-cell:last-of-type {
+  padding-right: 0 !important;
+}
+.mat-cell:first-of-type {
+  padding-left: 10px !important;
+}
+
+.mat-column-logo {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 20% !important;
+  width: 20% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+.logo-container {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.logo-container-in {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
+
+.logo-name {
+}
+.logo-name-large {
+  padding-left: 10px;
+}
+
+.loading {
+  height: 100%;
+}
+
+.title {
+  padding-top: 20px;
+}
+
+.history a {
+  color: white;
+}
+
+
+.overview-panel {
+}
+
+.overview-value {
+  font-size: 26px;
+  padding-bottom: 10px;
+}
+
+.overview-title {
+  font-weight: 100;
+
+}
+
+.history {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.intro {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 9;
+}
+
+.intro button {
+  margin: 20px;
+}
+
+.blur {
+  filter: blur(4px);
+}
+
+.migration a {
+  text-decoration: none;
+  color: red;
+}
+
+.migration-large {
+  padding: 20px;
+}
+tr.mat-row {
+  height: 80px;
+}
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.element-row:not(.element-expanded-row):hover {
+  background: #494949;
+}
+
+tr.element-row:not(.element-expanded-row):active {
+  background: #494949;
+}
+
+.element-detail {
+  overflow: hidden;
+  display: flex;
+}

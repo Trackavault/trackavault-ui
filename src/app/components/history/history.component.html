@@ -1,0 +1,82 @@
+<div class="grid-container">
+  <h2 class="title">History</h2>
+  <div *ngIf="!loadingData; else loading">
+    <div class="mat-elevation-z8 history">
+      <table mat-table matSort #completed #completedSort="matSort" class="full-width-table" aria-label="Elements" matSortActive="timestampEnd" matSortDirection="desc">
+
+        <ng-container matColumnDef="logo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+          <td mat-cell *matCellDef="let row">
+            <div class="logo-container" fxLayout.xs="column" fxLayoutAlign.xs="center start">
+              <img *ngIf="row.logo" class="token-logo logo-container-in" src="{{row.logo}}" alt="logo">
+              <div class="logo-container-in logo-name">{{row.name}}</div>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="initial">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Initial</th>
+          <td mat-cell *matCellDef="let row">
+            <app-asset-display [asset]="row.value.initial"></app-asset-display>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="exit">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Exit</th>
+          <td mat-cell *matCellDef="let row">
+            <app-asset-display [asset]="row.value.current"></app-asset-display>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="profitAll">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Profits</th>
+          <td mat-cell *matCellDef="let row">
+            <app-asset-display [asset]="row.profitAll"></app-asset-display>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="profitDaily">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Daily</th>
+          <td mat-cell *matCellDef="let row">
+            <app-asset-display [asset]="row.profitDaily"></app-asset-display>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="roi">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>ROI</th>
+          <td mat-cell *matCellDef="let row">
+            <div>{{row.roi | percent:'1.2'}}</div>
+            <div class="sub-apy">
+              <div>(1d: {{row.roiDaily | percent:'1.2'}})</div>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="timestampEnd">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Ended</th>
+          <td mat-cell *matCellDef="let row">
+            {{row.transaction.date.format('DD/MM/YYYY')}}
+            <a href="https://etherscan.io/tx/{{row.transaction.hash}}" target="_blank" rel="noreferrer"><mat-icon>open_in_new</mat-icon></a>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="timestampBegin">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Started</th>
+          <td mat-cell *matCellDef="let row">
+            {{row.transactionEntry.date.format('DD/MM/YYYY')}}
+            <a href="https://etherscan.io/tx/{{row.transactionEntry.hash}}" target="_blank" rel="noreferrer"><mat-icon>open_in_new</mat-icon></a>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsCompleted"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsCompleted;"></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <div fxLayout="row" fxLayoutAlign="center center" class="loading">
+    <app-loading-spinner class="loading-general"></app-loading-spinner>
+  </div>
+</ng-template>

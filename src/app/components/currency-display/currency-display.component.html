@@ -1,0 +1,6 @@
+<div tooltip="{{_item.amount.toString()}}">
+  {{_item.amount.isNaN() ? '0' :_item.amount.toString() | currency:_item.currency.toUpperCase()}}
+</div>
+<div class="original">
+  {{_converted.amount.isNaN() ? '0' : _converted.amount.toString() | currency:_converted.currency}}
+</div>

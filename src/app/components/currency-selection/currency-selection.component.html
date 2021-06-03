@@ -1,0 +1,6 @@
+<mat-form-field appearance="outline">
+  <mat-label>Currency</mat-label>
+  <mat-select [(value)]="selectedCurrency" [placeholder]="selectedCurrency" (selectionChange)="onSelect($event)">
+    <mat-option [value]="option.value" *ngFor="let option of possibleCurrencies">{{ option.viewValue }}</mat-option>
+  </mat-select>
+</mat-form-field>

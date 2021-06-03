@@ -1,0 +1,47 @@
+.ios-prompt {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-ios-inv {
+  position: absolute;
+  right: 0px;
+  top: 0;
+}
+.pwa-install-prompt__icon__container {
+  width: 70px;
+  height: 70px;
+}
+
+.pwa-install-prompt__icon {
+  border-radius: 12px;
+  display: block;
+  margin: 0 auto;
+  width: 60px;
+}
+
+.pwa-install-prompt__title {
+  font-size: 24px;
+  margin: 0 0 20px;
+}
+
+.pwa-install-prompt__text {
+  font-size: 16px;
+  line-height: 20px;
+  margin: 0 0 15px;
+}
+
+.pwa-install-prompt__guide {
+  align-items: center;
+  display: flex;
+  font-size: 12px;
+  justify-content: center;
+  margin: 0;
+}
+
+.pwa-install-prompt__guide__icon {
+  margin: 0 2px 6px;
+  width: 20px;
+}

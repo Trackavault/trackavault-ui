@@ -1,0 +1,27 @@
+:host {
+  min-height: 100%;
+  display: flex;
+}
+
+.grid-container {
+  width: 100%;
+  margin: 20px;
+}
+
+.entry {
+  padding: 20px;
+}
+
+.tip {
+  font-size: 28px;
+  padding-bottom: 20px;
+}
+.entry span {
+  font-size: clamp(1rem, -0.975rem + 5.333vw, 3rem);
+}
+
+.entry svg {
+  fill: #ffffff;
+  width: 100px;
+  height: 100px;
+}

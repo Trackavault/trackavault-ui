@@ -1,0 +1,23 @@
+<ng-template #HtmlContent>
+  <table>
+    <tr *ngFor="let base of assetsToDisplay">
+      <td>{{base.name}}</td>
+      <td>{{base.amount.toFormat(18)}}</td>
+    </tr>
+  </table>
+<!--  <div fxLayout="column" fxLayoutAlign="start start">-->
+<!--    <div *ngFor="let base of asset">-->
+<!--      {{base.name}}: {{base.amount.toFormat(18)}}-->
+<!--    </div>-->
+<!--  </div>-->
+</ng-template>
+
+
+<div>
+  <span [tooltip]="HtmlContent" [options]="tooltipOptions" content-type="template" placement="bottom">
+    {{baseAsset && !baseAsset.amount.isNaN() ? baseAsset.amount.toFormat(2, 1) : '0'}} {{baseAsset.name | uppercase}}
+  </span>
+</div>
+<div class="fiat">
+  {{fiatPriceConverted && !fiatPriceConverted.isNaN() ? (fiatPriceConverted.toString() | currency:targetFiatCurrency) : '0'}}
+</div>

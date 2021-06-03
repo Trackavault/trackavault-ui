@@ -1,0 +1,16 @@
+.chart {
+  clear: both;
+  position: relative;
+  display: block;
+}
+
+.reset-zoom {
+  position: absolute;
+  top: 10px;
+  right: 0px;
+}
+
+.chart-button {
+  min-width: 36px !important;
+  padding: 0px !important;
+}

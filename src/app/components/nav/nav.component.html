@@ -1,0 +1,71 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <div fxLayout="column" fxLayoutAlign="space-between stretch" style="height: 100%">
+      <div fxLayout="column" fxLayoutAlign="start stretch">
+        <div fxLayout="column" fxLayoutAlign="start center" class="logo-container">
+          <div class="logo">
+            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 80 80" xml:space="preserve">
+              <path d="M40 0C17.91 0 0 17.91 0 40s17.91 40 40 40 40-17.91 40-40S62.09 0 40 0zm27.64 67.64H12.36V12.36h55.29v55.28z"/>
+              <path d="M39.93 24.75c-8.38 0-15.18 6.79-15.18 15.18S31.54 55.1 39.93 55.1 55.1 48.31 55.1 39.93s-6.79-15.18-15.17-15.18zM40 45.9c-3.26 0-5.9-2.64-5.9-5.9 0-3.26 2.64-5.9 5.9-5.9s5.9 2.64 5.9 5.9c0 3.26-2.64 5.9-5.9 5.9z"/>
+              <path d="M45.9 40c0 .18-.01.37-.03.55l24.98-24.98-6.42-6.42-24.98 24.98c.18-.02.36-.03.55-.03 3.26 0 5.9 2.64 5.9 5.9zM34.1 40c0-.18.01-.37.03-.55L9.15 64.43l6.42 6.42 24.98-24.98c-.18.02-.36.03-.55.03-3.26 0-5.9-2.64-5.9-5.9z"/>
+              <path d="M70.85 64.43L45.87 39.45c.02.18.03.36.03.55 0 3.26-2.64 5.9-5.9 5.9-.18 0-.37-.01-.55-.03l24.98 24.98 6.42-6.42zM40 34.1c.18 0 .37.01.55.03L15.57 9.15l-6.42 6.42 24.98 24.98c-.02-.18-.03-.36-.03-.55 0-3.26 2.64-5.9 5.9-5.9z"/>
+            </svg>
+          </div>
+          <span class="title">Trackavault</span>
+        </div>
+
+        <mat-nav-list>
+          <a *ngFor="let item of menuItems" mat-list-item [routerLink]="'/'+item.link" class="nav-link">
+            <mat-icon aria-label="{{item.link}}">{{item.icon}}</mat-icon>
+            <span>{{item.link | titlecase}}</span>
+          </a>
+          <a mat-list-item [routerLink]="'/tip-jar'" fxLayout="row">
+            <mat-icon><img src="assets/tip-jar.svg" alt="tip jar"></mat-icon>
+            <span>Tip Jar</span>
+          </a>
+        </mat-nav-list>
+      </div>
+
+      <div fxLayout="column">
+        <app-currency-selection class="currency-selection"></app-currency-selection>
+        <div fxLayout="row" fxLayoutAlign="space-between center" class="icons-container">
+          <div>
+            <a class="link-feedback" href="https://feedback.trackavault.com" target="_blank">Request a feature</a>
+          </div>
+          <div fxLayout="row">
+            <a class="link-feedback social" href="https://t.me/trackavault" target="_blank" fxLayout="column" fxLayoutAlign="center center">
+              <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"
+                   style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);"
+                   preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23l7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3L3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z" fill="white"/></svg>
+            </a>
+            <button type="button" class="frill-container">
+              <svg class="SVGInline-svg" fill="none" viewBox="0 0 8 14" xmlns="http://www.w3.org/2000/svg">
+                <path d="m4.5 0-4.5 8.5h3.14v5.5l4.36-8.5h-3z" fill="white"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </mat-sidenav>
+  <mat-sidenav-content fxLayout="column">
+    <mat-toolbar color="primary" *ngIf="isHandset$ | async">
+      <span style="flex: 1 1 auto;"></span>
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+    </mat-toolbar>
+    <div fxFlex>
+      <router-outlet></router-outlet>
+    </div>
+    <app-footer></app-footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

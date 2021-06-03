@@ -1,0 +1,6 @@
+<app-line-chart
+  [data]="chartData$"
+  [legend]="lineChartLegend"
+  [ExtraButton]="{title: 'Daily Profits', callback: toggleDaily.bind(this)}"
+  [TooltipsCallbacks]="TooltipsCallbacks"
+></app-line-chart>
