@@ -38,6 +38,8 @@ export class SettingsService {
   private readonly _groupInvestments: BehaviorSubject<boolean>;
   // tslint:disable-next-line:variable-name
   private readonly ignoreDust$: BehaviorSubject<boolean>;
+  // tslint:disable-next-line:variable-name
+  private readonly experimental$: BehaviorSubject<boolean>;
   newVersionDetected$: BehaviorSubject<boolean>;
 
   constructor() {
@@ -48,6 +50,7 @@ export class SettingsService {
     this._wallets = new BehaviorSubject<string[]>(savedSettings.ethereumWallets);
     this._groupInvestments = new BehaviorSubject<boolean>(savedSettings.groupInvestments);
     this.ignoreDust$ = new BehaviorSubject<boolean>(savedSettings.ignoreDust);
+    this.experimental$ = new BehaviorSubject<boolean>(savedSettings.experimental);
 
     // Update version number
     savedSettings.lastVersion = environment.appVersion;
@@ -72,6 +75,10 @@ export class SettingsService {
 
   get ignoreDust(): BehaviorSubject<boolean> {
     return this.ignoreDust$;
+  }
+
+  get experimental(): BehaviorSubject<boolean> {
+    return this.experimental$;
   }
 
   private static loadSettings(): ISettings|undefined {
@@ -127,6 +134,7 @@ export class SettingsService {
     const newSettings = this._settings.value;
     newSettings.experimental = newValue;
     this.saveSettings(newSettings);
+    this.experimental$.next(newSettings.experimental);
   }
 
   toggleExperimental(): void {

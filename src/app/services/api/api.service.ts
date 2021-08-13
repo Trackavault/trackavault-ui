@@ -53,8 +53,8 @@ export class ApiService {
     );
   }
 
-  GetDefi(addresses: string[]): Observable<(AdapterHistoryExtended[])> {
-    return this.http.post<AdapterHistoryExtended[]>(`${environment.apiUrl}/defi`, {addresses});
+  GetDefi(addresses: string[], enableExperimental: boolean): Observable<(AdapterHistoryExtended[])> {
+    return this.http.post<AdapterHistoryExtended[]>(`${environment.apiUrl}/defi`, {addresses, experimental: enableExperimental});
   }
 
   GetDailyPrices(assets: PriceDailyArg[]): Observable<(DailyPriceResponse[])> {

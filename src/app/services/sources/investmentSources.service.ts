@@ -44,15 +44,16 @@ export class InvestmentSourcesService implements OnDestroy {
     return combineLatest([
       this.settings.wallets,
       this.settings.ignoreDust,
+      this.settings.experimental,
     ]).pipe(
-      switchMap(([settingsWallets, ignoreDust]) => {
+      switchMap(([settingsWallets, ignoreDust, experimental]) => {
         const walletsUsed = wallets.length !== 0 ? wallets : settingsWallets;
 
         const DetailPosition = (position: AssetPositionExtended|AssetPositionCompletedExtended) => {
           const baseCurrency = position.value.current.chain[0].name;
           const currentValue = calcAssetValue(position.value.current, new BigNumber(position.shares), position.shareToken);
           const initialValue = calcAssetValue(position.value.initial, new BigNumber(position.shares), position.shareToken);
-          if (ignoreDust && initialValue[0].amount.lte('10e-18')) {
+          if (ignoreDust && initialValue[0].amount.lte('10e-9')) {
             return;
           }
           const profits = currentValue.map((value, index) => {
@@ -94,7 +95,7 @@ export class InvestmentSourcesService implements OnDestroy {
           } as InvestmentCompleted;
         };
 
-        return this.api.GetDefi(walletsUsed).pipe(
+        return this.api.GetDefi(walletsUsed, experimental).pipe(
           map(history => {
             const adaptersHistory = history.map(adapterHistory => {
               return {
