@@ -37,9 +37,9 @@ export class LineChartComponent implements OnInit, OnDestroy {
       },
       tooltip: {
         enabled: true,
-        mode: 'index',
+        mode: 'nearest',
         intersect: false,
-        axis: 'xy',
+        axis: 'x',
         callbacks: {}
       },
       // @ts-ignore
