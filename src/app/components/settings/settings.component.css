@@ -25,3 +25,20 @@
 .mat-input-element {
   font-size: 12px;
 }
+
+@media only screen and (max-width: 425px) {
+  .wallet-container {
+    min-width: 240px;
+    max-width: 425px;
+  }
+  .wallet-form {
+    max-width: 200px;
+  }
+
+  .wallet-desc {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 65%;
+  }
+}
