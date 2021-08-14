@@ -31,9 +31,18 @@
     <div fxLayout="column">
       <div *ngFor="let wallet of settings.ethereumWallets; index as i" class="wallet wallet-container mat-elevation-z8">
         <div fxLayout="row" fxLayoutAlign="space-between center">
-          <div>{{wallet}}</div>
+          <div class="wallet-desc">{{wallet}}</div>
           <button mat-mini-fab color="primary" (click)="deleteWallet(wallet)">
             <mat-icon>delete</mat-icon>
+          </button>
+          <button
+            mat-mini-fab
+            type="button"
+            [attr.aria-label]="'Copy link to wallet ' + wallet"
+            matTooltip="Copy link to wallet"
+            (click)="copyLink(wallet)"
+            color="primary">
+            <mat-icon>link</mat-icon>
           </button>
         </div>
       </div>

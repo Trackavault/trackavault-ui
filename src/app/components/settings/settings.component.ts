@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {ISettings, SettingsService} from '@src/app/services/settings/settings.service';
 import {isAddress} from 'web3-utils';
+import {Clipboard} from '@angular/cdk/clipboard';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-settings',
@@ -12,7 +14,10 @@ export class SettingsComponent implements OnInit {
   settings$: BehaviorSubject<ISettings>;
   newWallet: string;
 
-  constructor(private settingsService: SettingsService) {
+  constructor(
+    private readonly snackbar: MatSnackBar,
+    private readonly clipboard: Clipboard,
+    private settingsService: SettingsService) {
     this.settings$ = this.settingsService.settings;
   }
 
@@ -43,5 +48,15 @@ export class SettingsComponent implements OnInit {
 
   setIgnoreDust(checked: boolean): void {
     this.settingsService.setIgnoreDust(checked);
+  }
+
+  copyLink(wallet: string): void {
+    const fullUrl = location.origin + '/?wallets=' + wallet;
+
+    if (this.clipboard.copy(fullUrl)) {
+      this.snackbar.open('Link copied', '', {duration: 2500});
+    } else {
+      this.snackbar.open('Link copy failed. Please try again!', '', {duration: 2500});
+    }
   }
 }
