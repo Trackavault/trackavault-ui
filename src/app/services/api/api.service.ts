@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {environment} from '@src/environments/environment';
-import {map} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 import {AdapterHistoryExtended, DailyPriceResponse} from '@src/app/services/api/api.service.types';
 
 export interface AssetPriceChainItem {
@@ -23,6 +23,19 @@ export interface AssetPrices {
 interface PriceDailyArg {
   id: string;
   blockNumber: string;
+}
+
+interface IMigrationVault {
+  symbol: string;
+  token: string;
+  vaultFrom: string;
+  vaultTo: string;
+  apyTooltip: string;
+  migrationMessage: string;
+}
+
+interface IMigrationResult {
+  [key: string]: IMigrationVault;
 }
 
 @Injectable({
@@ -63,5 +76,18 @@ export class ApiService {
 
   GetStats(): Observable<(DailyPriceResponse[][])> {
     return this.http.get<DailyPriceResponse[][]>(`${environment.apiUrl}/defi/stats`);
+  }
+
+  GetMigrations(): Observable<IMigrationResult> {
+    return this.http.get<any>('https://raw.githubusercontent.com/yearn/yearn-finance/master/app/containers/Vaults/migrationWhitelist.json')
+      .pipe(
+        catchError(() => of([])),
+        map( (values: any[]) => {
+          return values.reduce((acc, elem) => {
+            acc[elem.vaultFrom.toLowerCase()] = elem;
+            return acc;
+          }, {});
+        })
+      );
   }
 }
