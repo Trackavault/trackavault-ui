@@ -58,7 +58,7 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy{
               private breakpointObserver: BreakpointObserver,
               private snackBar: MatSnackBar,
               private route: ActivatedRoute) {
-    this.isHandset$ = this.breakpointObserver.observe(Breakpoints.Handset)
+    this.isHandset$ = this.breakpointObserver.observe(Breakpoints.HandsetPortrait)
       .pipe(
         map(result => result.matches),
         shareReplay()
