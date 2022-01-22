@@ -44,7 +44,6 @@ export class AssetDisplayComponent implements AfterContentInit, OnInit {
 
   convert(): void {
     if (this.fiatPrice
-      && this.fiatPrice.gt(0)
       && !this.fiatPrice.isNaN()
       && this.fiatPrice.isFinite()) {
       if (this.fiatCurrency !== this.settings.settings.value.currencyCode) {
