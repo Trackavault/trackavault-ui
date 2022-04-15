@@ -5,6 +5,11 @@ import {Observable} from 'rxjs';
 import {weightedMean} from '@src/app/utils/math';
 import {Transaction} from '@src/app/services/api/api.service.types';
 
+export enum EPlatform {
+  Ethereum,
+  Fantom,
+}
+
 export interface AssetPriceDetail {
   amount: BigNumber;
   name: string;
@@ -14,6 +19,7 @@ export interface AssetPriceDetail {
 
 export class Investment {
   id: string;
+  platform: EPlatform;
   name: string;
   shares: BigNumber;
   transaction: Transaction;
@@ -65,6 +71,7 @@ export class Investment {
     const profitDaily = assetReduce(investments.map(x => x.profitDaily), sumAmount);
     return {
       id: investments[0].id,
+      platform: investments[0].platform,
       name: investments[0].name,
       shares: investments.reduce((rv, x) => rv.plus(x.shares), new BigNumber(0)),
       transaction: investments.reduce(

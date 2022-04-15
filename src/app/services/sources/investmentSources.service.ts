@@ -1,7 +1,7 @@
 import {Injectable, OnDestroy} from '@angular/core';
 import {map, switchMap} from 'rxjs/operators';
 import {combineLatest, forkJoin, Observable, ReplaySubject, Subscription} from 'rxjs';
-import {Investment, InvestmentCompleted, ServiceData} from '@src/app/services/sources/investment.source.types';
+import {EPlatform, Investment, InvestmentCompleted, ServiceData} from '@src/app/services/sources/investment.source.types';
 import {SettingsService} from '@src/app/services/settings/settings.service';
 import {ApiService} from '@src/app/services/api/api.service';
 import BigNumber from 'bignumber.js';
@@ -36,7 +36,7 @@ export class InvestmentSourcesService implements OnDestroy {
   }
 
   getDailyPrices(investments: Investment[]): Observable<DailyPriceResponse[]> {
-    return this.api.GetDailyPrices(investments.map(x => ({id: x.id, blockNumber: x.transaction.blockNumber})));
+    return this.api.GetDailyPrices(investments.map(x => ({id: x.id, platform: EPlatform[x.platform], blockNumber: x.transaction.blockNumber})));
   }
 
   private fetchAllInternal(wallets: string[]): Observable<ServiceData> {
@@ -75,6 +75,7 @@ export class InvestmentSourcesService implements OnDestroy {
 
               return {
                 id: position.id,
+                platform: position.platform,
                 name: position.shareToken.replace(/^yvCurve-|yv/, ''),
                 shares: new BigNumber(position.shares),
                 transaction: position.transaction,

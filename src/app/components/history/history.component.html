@@ -56,7 +56,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Ended</th>
           <td mat-cell *matCellDef="let row">
             {{row.transaction.date.format('DD/MM/YYYY')}}
-            <a href="https://etherscan.io/tx/{{row.transaction.hash}}" target="_blank" rel="noreferrer"><mat-icon>open_in_new</mat-icon></a>
+            <a href="{{getBlockTrackerUrl(row.platform)}}/{{row.transaction.hash}}" target="_blank" rel="noreferrer"><mat-icon>open_in_new</mat-icon></a>
           </td>
         </ng-container>
 
@@ -64,7 +64,7 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Started</th>
           <td mat-cell *matCellDef="let row">
             {{row.transactionEntry.date.format('DD/MM/YYYY')}}
-            <a href="https://etherscan.io/tx/{{row.transactionEntry.hash}}" target="_blank" rel="noreferrer"><mat-icon>open_in_new</mat-icon></a>
+            <a href="{{getBlockTrackerUrl(row.platform)}}/{{row.transactionEntry.hash}}" target="_blank" rel="noreferrer"><mat-icon>open_in_new</mat-icon></a>
           </td>
         </ng-container>
 

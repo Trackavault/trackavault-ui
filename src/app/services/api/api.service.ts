@@ -22,6 +22,7 @@ export interface AssetPrices {
 
 interface PriceDailyArg {
   id: string;
+  platform: string;
   blockNumber: string;
 }
 

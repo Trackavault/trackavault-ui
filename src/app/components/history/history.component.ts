@@ -5,7 +5,7 @@ import {MatSort} from '@angular/material/sort';
 import {Observable, Subject} from 'rxjs';
 import {InvestmentSourcesService} from '@src/app/services/sources/investmentSources.service';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
-import {InvestmentCompleted} from '@src/app/services/sources/investment.source.types';
+import {EPlatform, InvestmentCompleted} from '@src/app/services/sources/investment.source.types';
 import moment from 'moment';
 
 @Component({
@@ -30,6 +30,24 @@ export class HistoryComponent implements AfterViewInit {
               private investmentSources: InvestmentSourcesService,
               private breakpointObserver: BreakpointObserver) {
     this.dataSourceCompleted = new MatTableDataSource<InvestmentCompleted>();
+    this.dataSourceCompleted.sortingDataAccessor = (item, property) => {
+      switch (property) {
+        case 'initial':
+          return item.value.initial[0].amount.times(item.value.initial[0].price).toNumber();
+        case 'exit':
+          return item.value.current[0].amount.times(item.value.current[0].price).toNumber();
+        case 'profitAll': // TODO
+          return item.profitAll[0].amount.times(item.profitAll[0].price).toNumber();
+        case 'profitDaily': // TODO
+          return item.profitDaily[0].amount.times(item.profitDaily[0].price).toNumber();
+        case 'roi':
+          return item.roi;
+        case 'timestampBegin':
+          return item.transactionEntry.timestamp;
+        case 'timestampEnd':
+          return item.transaction.timestamp;
+      }
+    };
     this.loadingData = true;
   }
 
@@ -63,4 +81,13 @@ export class HistoryComponent implements AfterViewInit {
       () => console.log('completed'));
   }
 
+  getBlockTrackerUrl(platform: EPlatform): string {
+    switch (platform) {
+      case EPlatform.Ethereum:
+        return 'https://etherscan.io/tx';
+      case EPlatform.Fantom:
+        return 'https://ftmscan.com/tx';
+    }
+    return '';
+  }
 }

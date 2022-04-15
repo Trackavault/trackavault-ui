@@ -1,3 +1,4 @@
+import {EPlatform} from '@src/app/services/sources/investment.source.types';
 
 export interface AssetPriceChainItem {
   name: string; // Asset name (eg: USDT)
@@ -18,6 +19,7 @@ export interface Transaction {
 
 export interface AssetPosition {
   id: string;
+  platform: EPlatform;
   baseId: string;
   shares: string;
   shareToken: string; // token name
