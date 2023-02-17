@@ -2,17 +2,17 @@
   "name": "portfolio-frontend",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
-    "deploy-release": "ng deploy portfolio-frontend --configuration=release",
-    "deploy-staging": "ng deploy portfolio-frontend --configuration=staging",
-    "generate-favicon": "pwa-asset-generator ./build_assets/logo.svg ./src/assets -i ./src/index.html -m ./src/manifest.webmanifest --opaque false --icon-only --favicon --type png",
-    "generate-app-icons": "pwa-asset-generator ./build_assets/logo.svg ./src/assets -i ./src/index.html -m ./src/manifest.webmanifest --background \"#000\"",
-    "run": "ng build --prod && http-server -p 8080 -c-1 dist/portfolio-frontend"
+    "ng": "./node_modules/.bin/ng",
+    "start": "./node_modules/.bin/ng serve",
+    "build": "./node_modules/.bin/ng build",
+    "test": "./node_modules/.bin/ng test",
+    "lint": "./node_modules/.bin/ng lint",
+    "e2e": "./node_modules/.bin/ng e2e",
+    "deploy-release": "./node_modules/.bin/ng deploy portfolio-frontend --configuration=release",
+    "deploy-staging": "./node_modules/.bin/ng deploy portfolio-frontend --configuration=staging",
+    "generate-favicon": "./node_modules/.bin/pwa-asset-generator ./build_assets/logo.svg ./src/assets -i ./src/index.html -m ./src/manifest.webmanifest --opaque false --icon-only --favicon --type png",
+    "generate-app-icons": "./node_modules/.bin/pwa-asset-generator ./build_assets/logo.svg ./src/assets -i ./src/index.html -m ./src/manifest.webmanifest --background \"#000\"",
+    "run": "./node_modules/.bin/ng build --prod && http-server -p 8080 -c-1 dist/portfolio-frontend"
   },
   "private": true,
   "dependencies": {

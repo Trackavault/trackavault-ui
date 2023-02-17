@@ -68,7 +68,9 @@
         "serve": {
           "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
-            "browserTarget": "portfolio-frontend:build"
+            "browserTarget": "portfolio-frontend:build",
+            "host": "0.0.0.0",
+            "ssl": true
           },
           "configurations": {
             "production": {
